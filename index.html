@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="css/style.css">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>X2Video</title>
+    <meta property="og:title" content="X2Video" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="X2Video" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="X2Video" />
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "headline": "X2Video",
+        "url": "http://localhost:4000/X2Video/"
+    }
+    </script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="X2Video" />
+    <link rel="stylesheet" href="fancybox/fancybox.css" />
+    <link rel="icon" href="#" />
+</head>
+
+<body>
+    <main class="page-content" aria-label="Content">
+        <div class="wrapper">
+            <article class="post">
+
+                <!--Content starts here-->
+
+                <div class="post-content">
+                    <h1><center><em>X2Video:</em> Adapting Diffusion Models for Multimodal Controllable Neural Video Rendering</center></h1>
+
+<div>
+<center>
+<h3>Contents:</h3>
+<p><a href="#abstract"><b>Abstract</b></a></p>
+<p><a href="#comparison"><b>Comparisons</b></a></p>
+<p><a href="#multimodal"><b>Multimodal Controls</b></a></p>
+<p><a href="#generalization"><b>Generalization to Other Scenes</b></a></p>
+</center>
+</div>
+
+<p></p>
+<div>
+<center>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/paper_video/teaser/teaser_1.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/paper_video/teaser/teaser_2.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/paper_video/teaser/teaser_3.mp4" type="video/mp4"> </video>
+</center>
+
+<h3 id="abstract">Abstract</h3>
+<p>We present X2Video, the first diffusion model for generating photorealistic videos guided by intrinsic channels including albedo, normal, roughness, metallicity, and irradiance, while supporting intuitive multi-modal controls with reference images and text prompts for both global and local regions. The intrinsic guidance allows accurate manipulation of color, material, geometry, and lighting, while reference images and text prompts provide intuitive adjustments in the absence of intrinsic information. To enable these functionalities, we extend the intrinsic-guided image generation model XRGB to video generation by employing a novel and efficient <em>Hybrid Self-Attention</em>, which ensures temporal consistency across video frames and also enhances fidelity to reference images. We further develop a <em>Masked Cross-Attention</em> to separately handle global and local text prompts, applying them effectively onto respective local and global regions. For generating long videos, our novel Recursive Sampling method incorporates progressive frame sampling, combining keyframe prediction and interpolation to maintain long-range temporal consistency while preventing error accumulation. To support the training of X2Video, we have assembled a video dataset named <em>InteriorVideo</em>, featuring 1,154 rooms from 295 interior scenes, complete with reliable ground-truth intrinsic channel sequences and smooth camera trajectories. Both qualitative and quantitative evaluations demonstrate that X2Video can produce long, temporally consistent, and photorealistic videos from intrinsic conditions. Additionally, X2Video effectively accommodates multi-modal controls with reference images, global and local text prompts, and simultaneously supports editing on color, material, geometry, and lighting through parametric tuning.</p>
+</div>
+
+
+<h3 id="comparison">Comparisons</h3>
+<p>Qualitative comparison XRGB and SVD + CNet</p>
+<div class="slideshow-container">
+  <div class="mySlides0 fade">
+    <div class="card">
+      <div><strong>Qualitative comparison 1</strong></div>
+        <p> <video width="837" height="420" autoplay muted loop controls> <source src="videos/paper_video/comparisons/comp_1.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides0 fade">
+    <div class="card">
+      <div><strong>Qualitative comparison 2</strong></div>
+        <p> <video width="837" height="420" autoplay muted loop controls> <source src="videos/paper_video/comparisons/comp_2.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides0 fade">
+    <div class="card">
+      <div><strong>Qualitative comparison 3</strong></div>
+        <p> <video width="837" height="420" autoplay muted loop controls> <source src="videos/paper_video/comparisons/comp_3.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides0 fade">
+    <div class="card">
+      <div><strong>Qualitative comparison 4</strong></div>
+        <p> <video width="837" height="420" autoplay muted loop controls> <source src="videos/paper_video/comparisons/comp_4.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <a class="prev" onclick="plusSlides(0, -1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(0, 1)">&#10095;</a>
+</div>
+
+<div style="text-align:center">
+  <span class="dot0" onclick="currentSlide(0, 1)"></span>
+  <span class="dot0" onclick="currentSlide(0, 2)"></span>
+  <span class="dot0" onclick="currentSlide(0, 3)"></span>
+  <span class="dot0" onclick="currentSlide(0, 4)"></span>
+</div>
+<p></p>
+
+<h3 id="multimodal">Multimodal Controls</h3>
+<p>Multimodal controls with intrinsic channels, reference images, and text prompts on bota global and local regions.</p>
+<div class="slideshow-container">
+  <div class="mySlides1 fade">
+    <div class="card">
+      <div><strong>Control 1</strong></div>
+        <p> <video width="837" height="220" autoplay muted loop controls> <source src="videos/paper_video/multimodal/multimodal_1.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides1 fade">
+    <div class="card">
+      <div><strong>Control 2</strong></div>
+        <p> <video width="837" height="220" autoplay muted loop controls> <source src="videos/paper_video/multimodal/multimodal_2.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides1 fade">
+    <div class="card">
+      <div><strong>Control 3</strong></div>
+        <p> <video width="837" height="220" autoplay muted loop controls> <source src="videos/paper_video/multimodal/multimodal_3.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides1 fade">
+    <div class="card">
+      <div><strong>Control 4</strong></div>
+        <p> <video width="837" height="220" autoplay muted loop controls> <source src="videos/paper_video/multimodal/multimodal_4.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides1 fade">
+    <div class="card">
+      <div><strong>Control 5</strong></div>
+        <p> <video width="837" height="220" autoplay muted loop controls> <source src="videos/paper_video/multimodal/multimodal_5.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides1 fade">
+    <div class="card">
+      <div><strong>Control 6</strong></div>
+        <p> <video width="837" height="220" autoplay muted loop controls> <source src="videos/paper_video/multimodal/multimodal_6.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides1 fade">
+    <div class="card">
+      <div><strong>Control 7</strong></div>
+        <p> <video width="837" height="220" autoplay muted loop controls> <source src="videos/paper_video/multimodal/multimodal_7.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <div class="mySlides1 fade">
+    <div class="card">
+      <div><strong>Control 8</strong></div>
+        <p> <video width="837" height="220" autoplay muted loop controls> <source src="videos/paper_video/multimodal/multimodal_8.mp4" type="video/mp4"> </video> </p>
+    </div>
+  </div>
+
+  <a class="prev" onclick="plusSlides(1, -1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+</div>
+
+<div style="text-align:center">
+  <span class="dot1" onclick="currentSlide(1, 1)"></span>
+  <span class="dot1" onclick="currentSlide(1, 2)"></span>
+  <span class="dot1" onclick="currentSlide(1, 3)"></span>
+  <span class="dot1" onclick="currentSlide(1, 4)"></span>
+  <span class="dot1" onclick="currentSlide(1, 5)"></span>
+  <span class="dot1" onclick="currentSlide(1, 6)"></span>
+  <span class="dot1" onclick="currentSlide(1, 7)"></span>
+  <span class="dot1" onclick="currentSlide(1, 8)"></span>
+</div>
+<p></p>
+
+<h3 id="generalization">Generalization to Other Scenes</h3>
+<p>Although our model is trained with interior scenes in a single rendering style, where intrinsics are exported from VRay, it can generalize to other unseen scenes and styles. We find 3D models from other sources and extract the intrinsic channels with the open software Blender. Below, we show the rendered videos from our framework, with unseen scenes, such as dynamic scenes and outdoor scenes.</p>
+<center>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/generalization/1.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/generalization/2.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/generalization/3.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/generalization/4.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/generalization/5.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/generalization/6.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/generalization/7.mp4" type="video/mp4"> </video>
+<video class="vid" width="880" height="210" autoplay muted loop controls> <source src="videos/generalization/8.mp4" type="video/mp4"> </video>
+</center>
+
+
+
+<!--Content ends here-->
+
+</div>
+
+</article>
+
+        </div>
+    </main>
+    <footer class="site-footer h-card">
+        <data class="u-url" href="/"></data>
+
+        <div class="wrapper">
+
+        </div>
+
+    </footer>
+
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+
+    <!-- Fancybox -->
+    <script src="fancybox/fancybox.umd.js"></script>
+    <script>
+        Fancybox.bind('[data-fancybox]', {
+            infinite: false,
+            Thumbs: {
+                autoStart: false,
+            },
+        });
+    </script>
+
+    <!-- Javascript Functions -->
+
+    </script>
+
+    <script type="text/javascript">
+
+        let slideIndex = [1, 1];
+        showSlides(0, slideIndex[0]);
+        showSlides(1, slideIndex[1]);
+
+        // Next/previous controls
+        function plusSlides(id, n) {
+            showSlides(id, slideIndex[id] += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(id, n) {
+            showSlides(id, slideIndex[id] = n);
+        }
+
+        function showSlides(id, n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides" + id);
+            let dots = document.getElementsByClassName("dot" + id);
+            if (n > slides.length) {
+                slideIndex[id] = 1
+            }
+            if (n < 1) {
+                slideIndex[id] = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex[id] - 1].style.display = "block";
+            dots[slideIndex[id] - 1].className += " active";
+        }
+    </script>
+
+
+</body>
+
+</html>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
